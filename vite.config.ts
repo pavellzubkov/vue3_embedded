@@ -17,7 +17,6 @@ export default ({ mode }: never) => {
   const rollupOpts: RollupOptions = mode === 'embedded' ? embeddedRollup : {}
 
   return defineConfig({
-    base: '/vue3_embedded/',
     plugins: [
       vue(),
       AutoImport({
