@@ -45,7 +45,7 @@ const settingsrouter: ImyRouteRecordRaw = {
         icon: 'GaugeFull',
         noCache: true,
         affix: true,
-        check: () => true
+        check: () => false
       }
     }
   ]
