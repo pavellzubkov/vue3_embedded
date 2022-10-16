@@ -1,0 +1,1 @@
+import{_ as e}from"./index.45d9d9f8.js";const r=e({beforeCreate(){const{params:e,query:r}=this.$route,{path:t}=e;this.$router.replace({path:"/"+t,query:r})},render:function(e){return e()}},[["__file","/home/pavel/Документы/WEBPROJECTS/WebEmbeddedGithub/src/router/views/nonlayoutviews/RedirectV.vue"]]);export{r as default};
