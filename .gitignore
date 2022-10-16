@@ -8,8 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-.DS_Store
 dist
+.DS_Store
 dist-ssr
 coverage
 *.local
@@ -29,3 +29,4 @@ coverage
 
 components.d.ts
 auto-imports.d.ts
+/dist/
