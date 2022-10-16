@@ -3,7 +3,7 @@
   "version": "0.2.5",
   "author": "pavellzubkov@yandex.ru",
   "scripts": {
-    "build_preview": "vite build",
+    "build_preview": "vite build --mode preview",
     "build_embedded": "vite build --mode embedded",
     "build_deploy": "vite build --mode deploy",
     "dev": "vite --host",

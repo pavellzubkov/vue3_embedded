@@ -16,10 +16,14 @@ export class WebsClass {
   static instance: WebsClass
 
   constructor() {
+    const reconnect =
+      process.env.NODE_ENV === 'deploy'
+        ? false
+        : {
+            delay: 5000
+          }
     const { status, send } = useWebSocket(wsAdr, {
-      autoReconnect: {
-        delay: 5000
-      },
+      autoReconnect: reconnect,
       heartbeat: false,
       onMessage: this.onMess,
       onConnected: this.onOpen,
@@ -62,12 +66,7 @@ export class WebsClass {
   }
 
   private onMess = (ws: WebSocket, ev: MessageEvent) => {
-    // console.log('WebsClass onMess. type ', ev)
-    // console.log('ws buf ', ws.bufferedAmount)
-
     let view: DataView | null = new DataView(ev.data)
-
-    // console.log('WebsClass ws on message  ', ev)
     const mesType: IWsMyMessType = view.getUint8(WsMessTypeOffset)
     this.messCount.value++
     switch (mesType) {
