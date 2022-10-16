@@ -1,0 +1,73 @@
+div::-webkit-scrollbar-thumb {
+  background-color: var(--color-info);
+  border: 4px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+  z-index: 10;
+}
+
+div::-webkit-scrollbar {
+  width: 12px;
+}
+
+.app-container{
+  margin: var(--app-contaiter-margin);
+}
+
+.description-value {
+  font-size: 16px;
+  margin-left: 6px;
+  word-break: unset;
+  word-wrap: normal;
+}
+
+.my-blink-dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.fill-content-dots {
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.row-class {
+  margin-bottom: var(--app-contaiter-margin);
+}
+
+.padding-0{
+  padding: 0 !important;
+}
+
+.padding-2{
+  padding: 2px !important;
+}
+
+.grid-auto{
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; justify-content: center; align-items: center
+}
+
+.badge-is-dot{
+  color:indianred;
+  background-color: transparent;
+}
+
+.icon-size-default {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-size-small {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-size-tiny {
+  width: 16px;
+  height: 16px;
+}
+
+

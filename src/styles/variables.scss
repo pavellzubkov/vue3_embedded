@@ -1,0 +1,105 @@
+$gray-50: #f2f3f3;
+$gray-100: #e4e7e7;
+$gray-200: #bec0be;
+$gray-300: #afb6b6;
+$gray-400: #949e9e;
+$gray-500: #7a8585;
+$gray-600: #616b6b;
+$gray-700: #495050;
+$gray-800: #313535;
+$gray-900: #181b1b;
+
+$cyan-50: #e8fdfb;
+$cyan-100: #d1faf7;
+$cyan-200: #a2f6ef;
+$cyan-300: #74f1e7;
+$cyan-400: #45eddf;
+$cyan-500: #17e8d7;
+$cyan-600: #12baac;
+$cyan-700: #0e8b81;
+$cyan-800: #095d56;
+$cyan-900: #052e2b;
+
+$blue-50: #e8f4fd;
+$blue-100: #d1e9fa;
+$blue-200: #a2d3f6;
+$blue-300: #74bdf1;
+$blue-400: #45a7ed;
+$blue-500: #1791e8;
+$blue-600: #1274ba;
+$blue-700: #0e578b;
+$blue-800: #093a5d;
+$blue-900: #051d2e;
+
+$indigo-50: #e8e9fd;
+$indigo-100: #d1d4fa;
+$indigo-200: #a2a9f6;
+$indigo-300: #747ef1;
+$indigo-400: #4553ed;
+$indigo-500: #1728e8;
+$indigo-600: #1220ba;
+$indigo-700: #0e188b;
+$indigo-800: #09105d;
+$indigo-900: #05082e;
+
+:root{
+  color-scheme: light;
+  --nav-bar-height: 45px;
+  --side-menu-expanded-width: 200px;
+  --side-menu-collapsed-width: 50px;
+  --side-menu-width: 20px;
+  --app-contaiter-margin: 4px;
+  --app-main-list-header: 35px;
+  --app-main-window-height:600px;
+  --app-main-window-width:600px;
+
+  --color-ok: #218301;
+  --color-info: #{$gray-200};
+  --color-info-blue: #{$indigo-200};
+  --color-warning: #f8cb90;
+  --color-alarm: #f85858;
+  --color-card-param: #{$gray-100};
+  --color-card-alarm: #f8bcbc;
+
+
+  --color-bg: #{$gray-50};
+  --color-bg-nav: #{$blue-100};
+  --color-bg-tag: #{$cyan-400};
+  --color-border: #{$gray-300};
+  --color-tooltip-bg: rgb(44, 43, 43);
+  --color-tooltip-text: rgb(250, 247, 247);
+
+  --color-shadow: rgba(2, 2, 2, 0.3);
+  --color-shadow1: rgba(2, 2, 2, 0.2);
+  --color-shadow2: rgba(2, 2, 2, 0.1);
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-info: #{$gray-600};
+  --color-info-blue: #{$indigo-700};
+  --color-warning: #a1855d;
+  --color-alarm:  #f85858;
+
+  --color-bg: #{$gray-900};
+  --color-bg-nav: #{$blue-900};
+  --color-bg-side: #{$indigo-800};
+  --color-bg-tag: #{$cyan-800};
+  --color-text: #{$gray-50};
+  --color-card-param: #{$gray-800};
+  --color-card-alarm: #5d4646;
+  --color-border: #{$gray-700};
+  --color-tooltip-bg: rgb(250, 247, 247);
+  --color-tooltip-text:  rgb(44, 43, 43);
+
+  --color-shadow: rgba(248, 248, 250, 0.3);
+  --color-shadow1: rgba(248, 248, 250, 0.2);
+  --color-shadow2: rgba(248, 248, 250, 0.1);
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+

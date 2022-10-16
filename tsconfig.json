@@ -1,0 +1,49 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "node_modules/@typescript/lib-dom/index.d.ts",
+    "@vue/**/*.ts",
+    "./components.d.ts",
+    "./auto-imports.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "esnext",
+    "strict": true,
+    "allowJs": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "preserveValueImports": false,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "types": [
+       "vite/client","unplugin-icons/types/vue","@vue/runtime-core","node"
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "lib": [
+      "es2019",
+      "dom"
+    ]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.vite-config.json"
+    }
+  ]
+}
