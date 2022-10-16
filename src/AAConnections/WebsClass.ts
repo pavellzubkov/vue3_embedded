@@ -8,14 +8,14 @@ export type IWsSend = (data: string | ArrayBuffer | Blob | DataView, useBuffer?:
 
 export class WebsClass {
   private ws: WebSocket | undefined
-  private readonly send: IWsSend
+  private send: IWsSend | undefined
   private _wsStatus: Ref<WebSocketStatus> = ref('CLOSED')
   public wsStatus: Ref<WebSocketStatus> = computed((): WebSocketStatus => {
     return this._wsStatus.value
   })
   static instance: WebsClass
 
-  constructor() {
+  private initWS = () => {
     const reconnect =
       process.env.NODE_ENV === 'deploy'
         ? false
@@ -34,6 +34,10 @@ export class WebsClass {
     this._wsStatus = status
   }
 
+  constructor() {
+    if (process.env.NODE_ENV !== 'deploy') this.initWS()
+  }
+
   public static getInstance(): WebsClass {
     if (!WebsClass.instance) {
       WebsClass.instance = new WebsClass()
@@ -45,6 +49,7 @@ export class WebsClass {
 
   public sendMess = (data: string | ArrayBuffer | Blob | DataView, useBuffer?: boolean): void => {
     if (!this.ws) return
+    if (!this.send) return
     if (this.ws.readyState == 1) this.send(data)
   }
 

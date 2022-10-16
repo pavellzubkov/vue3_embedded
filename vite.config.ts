@@ -68,16 +68,13 @@ export default ({ mode }: never) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    /*    optimizeDeps: {
-      exclude: ['node_modules']
-    },*/
     build: {
       rollupOptions: rollupOpts,
       minify: 'terser',
       terserOptions: {
         compress: {
-          // drop_console: true,
-          // drop_debugger: true
+          drop_console: true,
+          drop_debugger: true
         }
       }
     },
