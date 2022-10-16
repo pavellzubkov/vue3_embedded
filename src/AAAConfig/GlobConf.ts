@@ -32,9 +32,11 @@ let _baseAdr
 
 console.log('env - ', process.env.NODE_ENV)
 
+const socketType = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+
 if (process.env.NODE_ENV !== 'development') {
-  _wsAdr = 'ws://' + window.location.hostname + '/ws' // 'ws://' + window.location.hostname + '/ws'
-  _baseAdr = 'http://' + window.location.hostname
+  _wsAdr = `${socketType}//${window.location.hostname}/ws`
+  _baseAdr = `${window.location.protocol}//${window.location.hostname}`
 } else {
   _wsAdr = 'ws://10.10.10.10/ws' // window.location.hostname
   _baseAdr = 'http://10.10.10.10' // window.location.hostname
