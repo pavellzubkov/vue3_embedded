@@ -8,18 +8,22 @@ export type IWsSend = (data: string | ArrayBuffer | Blob | DataView, useBuffer?:
 
 export class WebsClass {
   private ws: WebSocket | undefined
-  private readonly send: IWsSend
+  private send: IWsSend | undefined
   private _wsStatus: Ref<WebSocketStatus> = ref('CLOSED')
   public wsStatus: Ref<WebSocketStatus> = computed((): WebSocketStatus => {
     return this._wsStatus.value
   })
   static instance: WebsClass
 
-  constructor() {
+  private initWS = () => {
+    const reconnect =
+      process.env.NODE_ENV === 'deploy'
+        ? false
+        : {
+            delay: 5000
+          }
     const { status, send } = useWebSocket(wsAdr, {
-      autoReconnect: {
-        delay: 5000
-      },
+      autoReconnect: reconnect,
       heartbeat: false,
       onMessage: this.onMess,
       onConnected: this.onOpen,
@@ -28,6 +32,10 @@ export class WebsClass {
 
     this.send = send as IWsSend
     this._wsStatus = status
+  }
+
+  constructor() {
+    if (process.env.NODE_ENV !== 'deploy') this.initWS()
   }
 
   public static getInstance(): WebsClass {
@@ -41,6 +49,7 @@ export class WebsClass {
 
   public sendMess = (data: string | ArrayBuffer | Blob | DataView, useBuffer?: boolean): void => {
     if (!this.ws) return
+    if (!this.send) return
     if (this.ws.readyState == 1) this.send(data)
   }
 
@@ -62,12 +71,7 @@ export class WebsClass {
   }
 
   private onMess = (ws: WebSocket, ev: MessageEvent) => {
-    // console.log('WebsClass onMess. type ', ev)
-    // console.log('ws buf ', ws.bufferedAmount)
-
     let view: DataView | null = new DataView(ev.data)
-
-    // console.log('WebsClass ws on message  ', ev)
     const mesType: IWsMyMessType = view.getUint8(WsMessTypeOffset)
     this.messCount.value++
     switch (mesType) {

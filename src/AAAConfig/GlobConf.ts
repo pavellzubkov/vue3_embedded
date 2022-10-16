@@ -28,16 +28,16 @@ export enum WsMessJ1939Req {
 
 // api endpoints
 let _wsAdr
-let _baseAdr
 
 console.log('env - ', process.env.NODE_ENV)
+console.log('mode - ', import.meta.env.MODE)
 
-if (process.env.NODE_ENV !== 'development') {
-  _wsAdr = 'ws://' + window.location.hostname + '/ws' // 'ws://' + window.location.hostname + '/ws'
-  _baseAdr = 'http://' + window.location.hostname
+const socketType = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+
+if (process.env.NODE_ENV === 'deploy') {
+  _wsAdr = `${socketType}//${window.location.hostname}/ws`
 } else {
   _wsAdr = 'ws://10.10.10.10/ws' // window.location.hostname
-  _baseAdr = 'http://10.10.10.10' // window.location.hostname
 }
 
 console.log('env _wsAdr - ', _wsAdr)
@@ -46,5 +46,3 @@ console.log('env _wsAdr - ', _wsAdr)
 export const app_version = APP_VERSION
 
 export const wsAdr = _wsAdr
-
-export const httpBaseAdr = _baseAdr

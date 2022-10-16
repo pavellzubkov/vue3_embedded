@@ -13,10 +13,24 @@ import { embeddedRollup } from './buildOpts'
 process.env.VUE_APP_VERSION = process.env.npm_package_version
 process.env.VUE_APP_AUTOR = process.env.npm_package_autor
 
+// eslint-disable-next-line no-control-regex
+const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g
+const DRIVE_LETTER_REGEX = /^[a-z]:/i
+
+function sanitizeFileName(name: string): string {
+  const match = DRIVE_LETTER_REGEX.exec(name)
+  const driveLetter = match ? match[0] : ''
+
+  // A `:` is only allowed as part of a windows drive letter (ex: C:\foo)
+  // Otherwise, avoid them because they can refer to NTFS alternate data streams.
+  return driveLetter + name.substr(driveLetter.length).replace(INVALID_CHAR_REGEX, 'a')
+}
+
 export default ({ mode }: never) => {
-  const rollupOpts: RollupOptions = mode === 'embedded' ? embeddedRollup : {}
+  const rollupOpts: RollupOptions = mode === 'embedded' ? embeddedRollup : { output: { sanitizeFileName: sanitizeFileName } }
 
   return defineConfig({
+    base: mode === 'deploy' ? '/vue3_embedded/' : '/',
     plugins: [
       vue(),
       AutoImport({
@@ -54,9 +68,6 @@ export default ({ mode }: never) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    /*    optimizeDeps: {
-      exclude: ['node_modules']
-    },*/
     build: {
       rollupOptions: rollupOpts,
       minify: 'terser',
