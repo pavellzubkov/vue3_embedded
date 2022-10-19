@@ -1,4 +1,4 @@
-# Веб интерфейс для сканера J1939 на ESP32 #
+# Веб интерфейс для [сканера](https://github.com/pavellzubkov/jscan_esp) J1939 на ESP32 #
 ### [Демо](https://pavellzubkov.github.io/vue3_embedded)
 
 
